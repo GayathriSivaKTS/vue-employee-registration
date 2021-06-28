@@ -79,15 +79,15 @@
 
 <script>
 import EmployeeDataService from '../Service/EmployeeDataService'
+
 export default {
   name: 'EmployeePut',
- props: {
-        id: Object
-    },
-  data () {
+ 
+  data() {
     return {
+      id: this.$route.params.id,
       msg: 'Employee Registration',
-      
+      // id:this.$route.params.id,
       employee: {
         firstName: '',
         lastName: '',
@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     save () {
-        
+      
       var data = {
         FirstName: this.employee.firstName,
         LastName: this.employee.lastName,
@@ -112,7 +112,7 @@ export default {
 
       }
 
-      EmployeeDataService.update(id, data)
+      EmployeeDataService.update(this.id, data)
         .then(response => {
         
           this.submitted = true

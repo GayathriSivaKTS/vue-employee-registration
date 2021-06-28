@@ -15,8 +15,7 @@
           <td>{{emp.PhoneNo}}</td>
           <td>{{emp.Dob}}</td>
           <td>{{emp.ReportsTo}}</td>
-          <td><router-link to="{ name: 'put',
-           params: { id:emp.ID}}">Edit</router-link></td>
+          <td> <router-link :to="{ name: 'EmployeePut', params: {id: emp.ID } }">Edit</router-link> </td>
           <td><button @click="goToDeleteEmployee(emp.ID)">Delete</button></td>
         </tr>
       </table></center>

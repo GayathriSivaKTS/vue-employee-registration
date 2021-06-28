@@ -30,15 +30,7 @@ export default new Router({
       path: '/employee',
       name: 'Employee',
       component: Employeepage,
-      children: [
-        {
-          path: '/edit-emp',
-          name: 'Editemp',
-          component: EditEmployee,
-          props: true
-
-        }
-      ]
+   
     },
     {
       path: '/employees',
@@ -59,11 +51,12 @@ export default new Router({
       component: Registration
     },
     { 
-      path: '/put',
+      path: '/EmployeePut/:id',
       name: 'EmployeePut',
       component: EmployeePut,
-      props:true
+      props: true
     }
+ 
     // { 
     //   path: '/delete',
     //   name: 'Delete',
