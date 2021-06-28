@@ -2,21 +2,20 @@ import http from '../baseAPI'
 
 class EmployeeDataService {
   getAll () {
-      
     return http.get('/Employee')
   }
 
-//   get(id) {
-//     return http.get(`/tutorials/${id}`);
-//   }
+  create (data) {
+    return http.post('/Employee', data)
+  }
 
-//   create(data) {
-//     return http.post("/tutorials", data);
-//   }
+  get (id) {
+    return http.get(`/Employee/ByID?id=${id}`)
+  }
 
-//   update(id, data) {
-//     return http.put(`/tutorials/${id}`, data);
-//   }
+  update (id, data) {
+    return http.put(`/Employee?id=${id}`, data)
+  }
 
 //   delete(id) {
 //     return http.delete(`/tutorials/${id}`);

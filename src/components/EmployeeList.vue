@@ -1,25 +1,10 @@
 <template>
 <div class="employeemsg">
     <center>
-      <h1>{{ msg }}</h1>
-
-      <table id="firstTable">
-        <tr>
-          <th>Employee ID</th>
-          <th>Employee Name</th>
-          <th>Employee DOB</th>
-          <th>Employee Email ID</th>
-          <th>Edit Employee</th>
-        </tr>
-
-        <tr v-for="emp in employee" v-bind:key="emp.ID">
-          <td>{{ emp.ID }}</td>
-          <td>{{ emp.FirstName }} {{ emp.LastName }}</td>
-          <td>{{ emp.Dob }}</td>
-          <td>{{ emp.Email }}</td>
-          <td><button @click="goToEditEmployee()">Edit</button></td>
-        </tr>
-      </table>
+ <p v-for="emp in employee" v-bind:key="emp.ID">
+          <router-link :to="{ name: 'Empbyid', params: emp }" @click.native="EmployeeByID(emp)"  class="emp-namelist" > {{ emp.FirstName }} {{ emp.LastName }}</router-link>      
+        </p>
+      
       <div>
       <router-link to="/registration">Register Employee</router-link></div>
     </center>
@@ -46,6 +31,9 @@ export default {
         .catch(e => {
           console.log(e)
         })
+    },
+    EmployeeByID (emp){
+     this.$emit("get-employee", emp);
     }
   },
   mounted () {
@@ -54,6 +42,14 @@ export default {
 }
 </script>
 <style scoped>
+.emp-namelist{
+  text-decoration: none;
+  color: black;
+}
+.employeemsg{
+      height: 70vh;
+      overflow: auto;
+}
 table {
   border-collapse: collapse;
   border: 3px solid green;
@@ -64,4 +60,11 @@ td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
+::-webkit-scrollbar{
+  width: 3px;
+}
+::-webkit-scrollbar-thumb{
+  background: gray;
+}
+
 </style>

@@ -1,9 +1,7 @@
 <template>
-  <div class="aboutmsg">
-    <center>
-      <h1>{{ msg }}</h1>
-    </center>
-  </div>
+<div>
+  {{msg}}
+</div>
 </template>
 
 <script>
@@ -16,3 +14,4 @@ export default {
   }
 }
 </script>
+

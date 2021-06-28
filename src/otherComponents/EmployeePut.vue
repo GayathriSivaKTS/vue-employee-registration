@@ -1,4 +1,3 @@
-import Vue from 'vue';
 <template>
   <div class="register">
     <center>
@@ -81,10 +80,14 @@ import Vue from 'vue';
 <script>
 import EmployeeDataService from '../Service/EmployeeDataService'
 export default {
-  name: 'Registration',
+  name: 'EmployeePut',
+ props: {
+        id: Object
+    },
   data () {
     return {
       msg: 'Employee Registration',
+      
       employee: {
         firstName: '',
         lastName: '',
@@ -98,6 +101,7 @@ export default {
   },
   methods: {
     save () {
+        
       var data = {
         FirstName: this.employee.firstName,
         LastName: this.employee.lastName,
@@ -105,12 +109,12 @@ export default {
         PhoneNo: this.employee.phoneNo,
         Dob: this.employee.dob,
         ReportsTo: this.employee.reportsTo
+
       }
 
-      EmployeeDataService.create(data)
+      EmployeeDataService.update(id, data)
         .then(response => {
-          this.employee.id = response.data.id
-          console.log(response.data)
+        
           this.submitted = true
         })
         .catch(e => {

@@ -6,6 +6,10 @@ import About from '../components/About'
 import Employee from '../components/Employee'
 import EditEmployee from '../components/EditEmployee'
 import EmployeeList from '../components/EmployeeList'
+import EmployeeByID from '../components/EmployeeByID'
+import Employeepage from '../otherComponents/Employeepage'
+import EmployeePut from '../otherComponents/EmployeePut'
+import EmployeeDelete from '../otherComponents/EmployeeDelete'
 Vue.use(Router)
 
 export default new Router({
@@ -25,7 +29,7 @@ export default new Router({
     {
       path: '/employee',
       name: 'Employee',
-      component: Employee,
+      component: Employeepage,
       children: [
         {
           path: '/edit-emp',
@@ -39,12 +43,32 @@ export default new Router({
     {
       path: '/employees',
       name: 'EmployeeList',
-      component: EmployeeList
-    },
-    {
+      component: EmployeeList,
+      children: [
+        {
+          path: '/employees/:id',
+          name: 'Empbyid',
+          component: EmployeeByID,
+          props:true
+        }
+      ]
+     },
+   { 
       path: '/registration',
       name: 'Registration',
       component: Registration
+    },
+    { 
+      path: '/put',
+      name: 'EmployeePut',
+      component: EmployeePut,
+      props:true
     }
+    // { 
+    //   path: '/delete',
+    //   name: 'Delete',
+    //   component: Delete,
+    //   props:true
+    // }
   ]
 })
