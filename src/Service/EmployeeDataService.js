@@ -17,9 +17,9 @@ class EmployeeDataService {
     return http.put(`/Employee?id=${id}`, data)
   }
 
-//   delete(id) {
-//     return http.delete(`/tutorials/${id}`);
-//   }
+  delete (id) {
+    return http.delete(`/Employee?id=${id}`)
+  }
 
 //   deleteAll() {
 //     return http.delete(`/tutorials`);

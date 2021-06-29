@@ -55,13 +55,13 @@ export default new Router({
       name: 'EmployeePut',
       component: EmployeePut,
       props: true
-    }
+    },
  
-    // { 
-    //   path: '/delete',
-    //   name: 'Delete',
-    //   component: Delete,
-    //   props:true
-    // }
+    { 
+      path: '/EmployeeDelete/:id',
+      name: 'EmployeeDelete',
+      component: EmployeeDelete,
+      props:true
+    }
   ]
 })

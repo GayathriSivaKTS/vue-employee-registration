@@ -114,8 +114,8 @@ export default {
 
       EmployeeDataService.update(this.id, data)
         .then(response => {
-        
-          this.submitted = true
+         console.log(response.data)
+          this.$router.push({ name: "Employee" })
         })
         .catch(e => {
           console.log(e)

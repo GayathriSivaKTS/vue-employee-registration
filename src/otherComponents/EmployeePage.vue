@@ -15,7 +15,7 @@
           <td>{{emp.PhoneNo}}</td>
           <td>{{emp.Dob}}</td>
           <td>{{emp.ReportsTo}}</td>
-          <td> <router-link :to="{ name: 'EmployeePut', params: {id: emp.ID } }">Edit</router-link> </td>
+          <td><button @click="goToEditEmployee(emp.ID)">Edit</button></td>
           <td><button @click="goToDeleteEmployee(emp.ID)">Delete</button></td>
         </tr>
       </table></center>
@@ -46,17 +46,17 @@ export default {
           console.log(e)
         })
     },
-    // goToEditEmployee (id:emp.ID) {
-    //   this.$router.push({
-    //     path: '/put',
-    //     // eslint-disable-next-line no-undef
-    //     params: {id: emp.ID}
-    //   })
-    // },
-    goToDeleteEmployee (id) {
+    goToEditEmployee (ID) {
       this.$router.push({
-        path: '/delete',
-        params: {ID: id}
+        name: 'EmployeePut',
+        // eslint-disable-next-line no-undef
+        params: {id: ID}
+      })
+    },
+    goToDeleteEmployee (ID) {
+      this.$router.push({
+        name: 'EmployeeDelete',
+        params: {id: ID}
       })
     }
   },
