@@ -1,10 +1,10 @@
-import Vue from 'vue';
+
 <template>
-  <div class="register">
+  <div class="inner">
     <center>
-      <h2>{{ msg }}</h2>
+      <h6>{{ msg }}</h6>
     </center>
-    <div class="inner">
+    <div class="register">
       <div>
         <label for="firstName">First Name</label>
         <input
@@ -73,7 +73,9 @@ import Vue from 'vue';
         size="50" />
       </div>
 
-      <div><button @click="save" class="btn btn-success">Submit</button></div>
+      <div><button @click="save" class="btn btn-success">Submit</button>
+      <b-button style="float:right" variant="outline-danger" @click="goToBackEmployee()">Exit</b-button>
+</div>
     </div>
   </div>
 </template>
@@ -116,15 +118,19 @@ export default {
         .catch(e => {
           console.log(e)
         })
-    }
+    },
+     goToBackEmployee () {
+       
+    this.$emit("close-registration", undefined)
+  }
   }
 }
 </script>
 <style scoped>
 input[type="text"] {
   width: 100%;
-  padding: 8px 10px;
-  margin: 8px 0;
+  padding: 4px 6px;
+  margin: 2px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -132,8 +138,8 @@ input[type="text"] {
 }
 input[type="number"] {
   width: 100%;
-  padding: 8px 10px;
-  margin: 8px 0;
+  padding: 4px 6px;
+  margin: 2px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 2px;
@@ -141,8 +147,8 @@ input[type="number"] {
 }
 input[type="date"] {
   width: 100%;
-  padding: 8px 10px;
-  margin: 8px 0;
+  padding: 4px 6px;
+  margin: 2px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 2px;
@@ -152,8 +158,8 @@ input[type="button"] {
   width: 20%;
   background-color: #4caf50;
   color: white;
-  padding: 8px 10px;
-  margin: 8px 0;
+  padding: 4px 6px;
+  margin: 2px 0;
   border: none;
   border-radius: 2px;
   cursor: pointer;
@@ -162,16 +168,22 @@ input[type="button"] {
 input[type="button"]:hover {
   background-color: #45a049;
 }
-.inner {
+.inner{
   align-content: center;
 }
+
 .register {
-  border: 3px solid green;
+  align-content: center;
+  border: 3px solid #97d4da;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 20%;
-  width: 30%;
+   background-color: #f0f9fa ;
+  border-collapse:separate;
+    
+    border-radius:12px;
+    -moz-border-radius:12px;
+  width: 30vw;
   border-radius: 2px;
 
   padding: 5px;

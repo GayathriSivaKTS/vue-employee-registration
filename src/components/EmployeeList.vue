@@ -2,7 +2,7 @@
 <div class="employeemsg">
     <center>
  <p v-for="emp in employee" v-bind:key="emp.ID">
-          <router-link :to="{ name: 'Empbyid', params: emp }" @click.native="EmployeeByID(emp)"  class="emp-namelist" > {{ emp.FirstName }} {{ emp.LastName }}</router-link>      
+          <router-link :to="{ name: 'EmployeeByID', params:{id: emp.ID} }" @click.native="getEmployee(emp)"  class="emp-namelist" > {{ emp.FirstName }} {{ emp.LastName }}</router-link>      
         </p>
       
       <div>
@@ -17,6 +17,7 @@ export default {
   name: 'EmployeeList',
   data () {
     return {
+      
       msg: 'Employee Details',
       employee: []
     }
@@ -32,9 +33,13 @@ export default {
           console.log(e)
         })
     },
-    EmployeeByID (emp){
-     this.$emit("get-employee", emp);
+    getEmployee (emp) {
+      // console.log(this.$router.params);
+      this.$emit('get-employee', emp)
     }
+    // EmployeeByID (emp){
+    //  this.$emit("get-employee", emp);
+    // }
   },
   mounted () {
     this.getEmployees()

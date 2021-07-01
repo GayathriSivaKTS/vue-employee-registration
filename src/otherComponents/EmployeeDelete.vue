@@ -1,7 +1,8 @@
 <template>
   <div class="register">
 <b-alert  variant="danger" show><p>Are you sure want to Delete Employee</p>
-    <button @click="deleteemp" class="btn btn-success">Submit</button>
+    <b-button @click="deleteemp" variant="danger">Yes,Delete</b-button>
+    <b-button variant="info" @click="goToBackEmployee()">No</b-button>
 </b-alert>
   </div>
 </template>
@@ -25,35 +26,39 @@ export default {
       EmployeeDataService.delete(this.id)
         .then(response => {
           console.log(response.data)
-          this.$router.push({ name: "Employee" })
+          // this.$router.push({ name: "Employee" })
         })
         .catch(e => {
           console.log(e)
         })
- }
+ },
+   goToBackEmployee () {
+    this.$emit("close-employee", undefined);
+  }
 
   }
 }
 </script>
 <style scoped>
-
-
-
-input[type="button"]:hover {
-  background-color: #45a049;
-}
-.inner {
+.inner{
   align-content: center;
 }
+
 .register {
-  border: 3px solid green;
+  align-content: center;
+  
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 20%;
-  width: 30%;
+   
+  border-collapse:separate;
+    
+    border-radius:12px;
+    -moz-border-radius:12px;
+  width: 30vw;
   border-radius: 2px;
 
   padding: 5px;
 }
+
 </style>

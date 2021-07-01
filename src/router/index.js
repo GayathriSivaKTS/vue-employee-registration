@@ -18,8 +18,38 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
-
+      component: Home,
+      children: [
+        {
+          path: '/employees/:id',
+          name: 'EmployeeList',
+          component: EmployeeList
+        },
+        {
+          path: '/EmployeeByID/:id',
+          name: 'EmployeeByID',
+          component: EmployeeByID,
+          props:true
+        },
+        { 
+          path: '/EmployeePut/:id',
+          name: 'EmployeePut',
+          component: EmployeePut,
+          props: true
+        },
+     
+        { 
+          path: '/EmployeeDelete/:id',
+          name: 'EmployeeDelete',
+          component: EmployeeDelete,
+          props:true
+        },
+        { 
+          path: '/registration',
+          name: 'Registration',
+          component: Registration
+        }
+      ]
     },
     {
       path: '/about',
@@ -36,20 +66,9 @@ export default new Router({
       path: '/employees',
       name: 'EmployeeList',
       component: EmployeeList,
-      children: [
-        {
-          path: '/employees/:id',
-          name: 'Empbyid',
-          component: EmployeeByID,
-          props:true
-        }
-      ]
+
      },
-   { 
-      path: '/registration',
-      name: 'Registration',
-      component: Registration
-    },
+
     { 
       path: '/EmployeePut/:id',
       name: 'EmployeePut',

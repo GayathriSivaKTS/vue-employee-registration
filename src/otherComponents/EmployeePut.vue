@@ -1,9 +1,10 @@
 <template>
-  <div class="register">
-    <center>
-      <h2>{{ msg }}</h2>
-    </center>
-    <div class="inner">
+  <div class="inner">
+    <center><h6>
+   {{msg}}</h6></center>
+   <b-button style="float:right" variant="outline-danger" @click="goToBackEmployee()">Exit</b-button>
+
+    <div class="register">
       <div>
         <label for="firstName">First Name</label>
         <input
@@ -11,7 +12,7 @@
         class="form-control"
         id="firstName"
         required
-        v-model="employee.firstName"
+        v-model="employee.FirstName"
         name="firstName"
         size="50" />
       </div>
@@ -22,7 +23,7 @@
         class="form-control"
         id="lastName"
         required
-        v-model="employee.lastName"
+        v-model="employee.LastName"
         name="lastName"
         size="50" />
 
@@ -34,7 +35,7 @@
         class="form-control"
         id="emailid"
         required
-        v-model="employee.emailid"
+        v-model="employee.Email"
         name="emailid"
         size="50" />
       </div>
@@ -45,7 +46,7 @@
         class="form-control"
         id="phoneNo"
         required
-        v-model="employee.phoneNo"
+        v-model="employee.PhoneNo"
         name="phoneNo"
         size="50" />
       </div>
@@ -56,7 +57,7 @@
         class="form-control"
         id="dob"
         required
-        v-model="employee.dob"
+        v-model="employee.Dob"
         name="dob"
         size="50" />
       </div>
@@ -67,7 +68,7 @@
         class="form-control"
         id="reportsTo"
         required
-        v-model="employee.reportsTo"
+        v-model="employee.ReportsTo"
         name="reportsTo"
         size="50" />
       </div>
@@ -83,19 +84,13 @@ import EmployeeDataService from '../Service/EmployeeDataService'
 export default {
   name: 'EmployeePut',
  
-  data() {
+  data () {
     return {
       id: this.$route.params.id,
-      msg: 'Employee Registration',
+      
+      msg: 'Edit Employee',
       // id:this.$route.params.id,
-      employee: {
-        firstName: '',
-        lastName: '',
-        emailid: '',
-        phoneNo: '',
-        dob: '',
-        reportsTo: ''
-      },
+      employee: [],
       submitted: false
     }
   },
@@ -103,32 +98,50 @@ export default {
     save () {
       
       var data = {
-        FirstName: this.employee.firstName,
-        LastName: this.employee.lastName,
-        Email: this.employee.emailid,
-        PhoneNo: this.employee.phoneNo,
-        Dob: this.employee.dob,
-        ReportsTo: this.employee.reportsTo
+        FirstName: this.employee.FirstName,
+        LastName: this.employee.LastName,
+        Email: this.employee.Email,
+        PhoneNo: this.employee.PhoneNo,
+        Dob: this.employee.Dob,
+        ReportsTo: this.employee.ReportsTo
 
       }
 
       EmployeeDataService.update(this.id, data)
         .then(response => {
          console.log(response.data)
-          this.$router.push({ name: "Employee" })
+          // this.$router.push({ name: "Employee" })
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    },
+     goToBackEmployee () {
+    this.$emit("close-employee", undefined);
+  },
+     getEmployees () {
+      EmployeeDataService.get(this.id)
+        .then(response => {
+          this.employee = response.data
+          console.log(response.data)
+          
         })
         .catch(e => {
           console.log(e)
         })
     }
+   
+  },
+  mounted () {
+    this.getEmployees()
   }
 }
 </script>
 <style scoped>
 input[type="text"] {
   width: 100%;
-  padding: 8px 10px;
-  margin: 8px 0;
+  padding: 4px 6px;
+  margin: 2px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -136,8 +149,8 @@ input[type="text"] {
 }
 input[type="number"] {
   width: 100%;
-  padding: 8px 10px;
-  margin: 8px 0;
+  padding: 4px 6px;
+  margin: 2px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 2px;
@@ -145,8 +158,8 @@ input[type="number"] {
 }
 input[type="date"] {
   width: 100%;
-  padding: 8px 10px;
-  margin: 8px 0;
+  padding: 4px 6px;
+  margin: 2px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 2px;
@@ -156,8 +169,8 @@ input[type="button"] {
   width: 20%;
   background-color: #4caf50;
   color: white;
-  padding: 8px 10px;
-  margin: 8px 0;
+  padding: 4px 6px;
+  margin: 2px 0;
   border: none;
   border-radius: 2px;
   cursor: pointer;
@@ -166,16 +179,22 @@ input[type="button"] {
 input[type="button"]:hover {
   background-color: #45a049;
 }
-.inner {
+.inner{
   align-content: center;
 }
+
 .register {
-  border: 3px solid green;
+  align-content: center;
+  border: 3px solid #97d4da;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 20%;
-  width: 30%;
+   background-color: #f0f9fa ;
+  border-collapse:separate;
+    
+    border-radius:12px;
+    -moz-border-radius:12px;
+  width: 30vw;
   border-radius: 2px;
 
   padding: 5px;

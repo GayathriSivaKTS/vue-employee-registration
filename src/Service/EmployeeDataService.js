@@ -13,6 +13,14 @@ class EmployeeDataService {
     return http.get(`/Employee/ByID?id=${id}`)
   }
 
+  getdr (id) {
+    return http.get(`/Employee/DirectReportee?id=${id}`)
+  }
+
+  getidr (id) {
+    return http.get(`/Employee/IndirectReportee?id=${id}`)
+  }
+
   update (id, data) {
     return http.put(`/Employee?id=${id}`, data)
   }
