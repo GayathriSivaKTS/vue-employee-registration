@@ -83,7 +83,7 @@
 <script>
 import EmployeeDataService from '../Service/EmployeeDataService'
 export default {
-  name: 'Registration',
+  name: 'Register',
   data () {
     return {
       msg: 'Employee Registration',

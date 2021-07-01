@@ -1,13 +1,25 @@
 <template>
-<div class="employeemsg">
-    <center>
- <p v-for="emp in employee" v-bind:key="emp.ID">
+ <div class="employeelist">
+  
+ <!-- <p v-for="emp in employee" v-bind:key="emp.ID">
           <router-link :to="{ name: 'EmployeeByID', params:{id: emp.ID} }" @click.native="getEmployee(emp)"  class="emp-namelist" > {{ emp.FirstName }} {{ emp.LastName }}</router-link>      
-        </p>
-      
+        </p> -->
+    <form role="db-search" class="bd-search d-flex align-items-center" style="padding:16px 0px 16px 15px;">
+        <input  type="text" v-model="search" name="name" placeholder="Search..." autocomplete="off"  class="form-control "  />
+         
+           <router-link :to="{ path: '/Register' }" @click.native="getEmployee(emp)"  class="emp-namelist" ><b-button style="background-color:#aae4e6" >+</b-button></router-link>
+         
+    </form> 
+    <div class="employeemsg">
+        <center>
+    <b-list-group v-for="emp in filterEmployee" v-bind:key="emp.ID">
+      <b-list-group-item class="list"><router-link :to="{ name: 'EmployeeByID', params:{id: emp.ID} }" @click.native="getEmployee(emp)"  class="emp-namelist" > {{emp.FirstName}}</router-link>      
+      </b-list-group-item>
+    </b-list-group>
       <div>
-      <router-link to="/registration">Register Employee</router-link></div>
+      <router-link to="/Register">Register Employee</router-link></div>
     </center>
+   </div>
   </div>
 </template>
 <script>
@@ -19,7 +31,16 @@ export default {
     return {
       
       msg: 'Employee Details',
-      employee: []
+      employee: [],
+      search:''
+    }
+  },
+  
+  computed:{
+  filterEmployee: function (){
+      return this.employee.filter((emp)=>{
+        return emp.FirstName.toLowerCase().includes(this.search.toLowerCase());
+      });
     }
   },
   methods: {
@@ -71,5 +92,8 @@ td {
 ::-webkit-scrollbar-thumb{
   background: gray;
 }
+.list{
+  border:none;
 
+}
 </style>

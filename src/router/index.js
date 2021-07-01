@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Registration from '../components/Registration'
+import Register from '../components/Registration'
 import Home from '../components/Home'
 import About from '../components/About'
 import Employee from '../components/Employee'
@@ -45,9 +45,9 @@ export default new Router({
           props:true
         },
         { 
-          path: '/registration',
-          name: 'Registration',
-          component: Registration
+          path: '/Register',
+          name: 'Register',
+          component: Register
         }
       ]
     },

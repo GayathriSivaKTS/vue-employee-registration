@@ -6,11 +6,11 @@
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-    <b-collapse id="nav-collapse" is-nav>
+    <b-collapse id="nav-collapse flex-row" is-nav>
       <b-navbar-nav>
         <b-nav-item href="#">About</b-nav-item>
       </b-navbar-nav>
-      <b-navbar-nav class="navbar-nav flex-row">
+      <b-navbar-nav class="navbar-nav flex-row-reverse">
         <b-nav-form>
            <b-button size="sm" class="my-2 my-sm-0"  @click="goToRegister()" type="submit">Register</b-button>
         </b-nav-form>
@@ -21,10 +21,10 @@
 <b-row class="row">
   <b-col class="sidebar" sm="12" lg="2">
    <!-- search button -->
-    <form role="search" class="bd-search d-flex align-items-center" style="padding:16px 0px 16px 15px;">
-        <input id="bd-search-input" type="search" placeholder="Search..." autocomplete="off"  class="form-control ds-input"   style="position: relative; vertical-align: top;">
+    <!-- <form role="search" class="bd-search d-flex align-items-center" style="padding:16px 0px 16px 15px;">
+        <input id="bd-search-input" type="text" name="name" placeholder="Search..." autocomplete="off"  class="form-control ds-input"  v-model="search" >
          <b-button style="background-color:#aae4e6" @click="goToRegister()" >+</b-button>
-    </form>
+    </form> -->
     <emp-list v-on:get-employee="onGetEmployee">
     </emp-list>
   </b-col>
